@@ -7,6 +7,7 @@ pub fn conv_rs(sample: &[f32], coeff: &[f32]) -> Vec<f32> {
     res
 }
 
+// use std::intrinsics::{fadd_fast, fmul_fast}; // for SIMD, nigtly build
 pub fn conv_rs_noiter(sample: &[f32], coeff: &[f32]) -> Vec<f32> {
     let mut res = vec![];
     for i in 0..=sample.len() - coeff.len() {
@@ -15,6 +16,7 @@ pub fn conv_rs_noiter(sample: &[f32], coeff: &[f32]) -> Vec<f32> {
         for j in 0..coeff.len() {
             // tmp += sample[i + j] * coeff[j]; // 3x slower
             tmp += window[j] * coeff[j];
+            //tmp = unsafe { fadd_fast(tmp, fmul_fast(window[j], coeff[j])) }; // for SIMD, nightly build
         }
         res.push(tmp);
     }

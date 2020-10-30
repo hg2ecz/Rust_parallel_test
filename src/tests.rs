@@ -2,6 +2,7 @@
 pub fn single_rs(sample: &[f32], coeff: &[f32]) -> Vec<f32> {
     super::conv_rs(sample, coeff)
 }
+
 pub fn single_rs_noiter(sample: &[f32], coeff: &[f32]) -> Vec<f32> {
     super::conv_rs_noiter(sample, coeff)
 }

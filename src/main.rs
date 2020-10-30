@@ -1,3 +1,5 @@
+//#![feature(core_intrinsics)] // for SIMD, nigthly build
+
 use rand::Rng;
 use std::time::Instant;
 mod conv;
