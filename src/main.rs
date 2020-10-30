@@ -16,7 +16,7 @@ fn tests(
     let elapsed_time = start_time.elapsed();
     let milliseconds = (elapsed_time.as_secs() as f32 * 1000.0)
         + (elapsed_time.subsec_nanos() as f32 / 1_000_000.0);
-    print!("{:22} elapsed: {:6.1} ms          ", testname, milliseconds);
+    print!("{:16} elapsed: {:6.1} ms          ", testname, milliseconds);
 
     if let Some(sum0) = ref0 {
         //println!("len & sum ellenőrzés ...");
@@ -38,25 +38,19 @@ fn main() {
 
     println!("---");
 
-    let res0 = tests(&tests::single_rs, &sample, &coeff, "test_single_rs", None);
+    let res0 = tests(&tests::single_rs, &sample, &coeff, "single_rs", None);
     let ref0 = Some(res0.iter().sum());
     tests(
         &tests::single_rs_noiter,
         &sample,
         &coeff,
-        "test_single_rs_noiter",
+        "single_rs_noiter",
         ref0,
     );
-    tests(
-        &tests::splitted_rs,
-        &sample,
-        &coeff,
-        "test_splitted_rs",
-        ref0,
-    );
-    tests(&tests::rayontest_rs, &sample, &coeff, "test_rayon_rs", ref0);
+    tests(&tests::splitted_rs, &sample, &coeff, "splitted_rs", ref0);
+    tests(&tests::rayontest_rs, &sample, &coeff, "rayon_rs", ref0);
     println!();
-    tests(&tests::single_c, &sample, &coeff, "test_single_c", ref0);
-    tests(&tests::splitted_c, &sample, &coeff, "test_splitted_c", ref0);
-    tests(&tests::rayontest_c, &sample, &coeff, "test_rayon_c", ref0);
+    tests(&tests::single_c, &sample, &coeff, "single_c", ref0);
+    tests(&tests::splitted_c, &sample, &coeff, "splitted_c", ref0);
+    tests(&tests::rayontest_c, &sample, &coeff, "rayon_c", ref0);
 }
