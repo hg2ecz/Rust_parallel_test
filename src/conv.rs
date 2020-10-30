@@ -1,8 +1,7 @@
-
 pub fn conv_rs(sample: &[f32], coeff: &[f32]) -> Vec<f32> {
     let mut res = vec![];
     for i in 0..=sample.len() - coeff.len() {
-        let tmp = sample[i..].iter().zip(coeff).map(|(&s, &c)| s*c).sum();
+        let tmp = sample[i..].iter().zip(coeff).map(|(&s, &c)| s * c).sum();
         res.push(tmp);
     }
     res

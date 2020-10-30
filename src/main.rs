@@ -1,9 +1,8 @@
 use rand::Rng;
 use std::time::Instant;
-mod tests;
 mod conv;
+mod tests;
 use conv::*;
-
 
 fn tests(
     testfn: &dyn Fn(&[f32], &[f32]) -> Vec<f32>,
